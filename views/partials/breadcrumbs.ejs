@@ -1,0 +1,36 @@
+<div class="breadcrumbs">
+<style>
+.breadcrumbs{
+}
+.breadcrumbs > a{
+	color: white;
+	font-family: courier;
+}
+.breadcrumbs > a:hover{
+	color: rgb(127, 177, 127);
+}
+</style>
+<%if (loggedIn){%>
+	<% breadcrumbs.forEach((link, index) => { %>
+			<%console.log(link)%>
+		<% if(link == '/') { %>
+			<a href="<%=link%>">Home </a>
+		<%}else if (Number(link.slice(link.lastIndexOf('/') + 1).slice(0, 4)) ) {%>
+			<a href="<%=link%>">
+				> <%=currentUser.fullname%> 
+			</a>
+		<%}else{ %>
+			<a href="<%=link%>">
+				> <%=link.slice(link.lastIndexOf('/') + 1) %> 
+				
+			</a>
+		<%}%>
+	<% }) %>
+<%}%>
+	
+</div>
+
+
+
+
+

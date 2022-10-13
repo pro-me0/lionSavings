@@ -1,0 +1,38 @@
+<script>
+	window.addEventListener('load', )
+</script>
+<div class="profile_index">
+	<div class="profile">
+		<div class="image">
+			#<%=currentUser.balance%>
+		</div>
+
+		<div class="details">
+			<h1>
+				<%=currentUser.fullname.toUpperCase()%>
+			</h1>
+
+			<div>
+				<%=currentUser.email%>
+			</div>
+
+			<div>
+				<%=currentUser.phoneNumber%>
+			</div>
+		</div>
+	</div>
+
+	<div class="other">
+		<a href="/users/startSaving">
+			Start saving
+		</a>
+		
+		<a href="/users/subscriptions">
+			Buy airtime or data
+		</a>
+		
+		<a href="/users/subscriptions">
+			See active subscriptions
+		</a>
+	</div>
+</div>

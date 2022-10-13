@@ -1,0 +1,20 @@
+
+<style>
+	body{
+		backdrop-filter: blur(8px);
+	}
+</style>
+
+<div class="signyp_div">
+	<form class='form signup' action="/users/settings/edit" method="POST">
+		<input class="input" type="text" name="firstName" value="<%=currentUser.name.first%>" required>
+
+		<input class="input" type="text" name="lastName" value="<%=currentUser.name.last%>" required>
+
+		<input class="input" type="email" name="email" value="<%=currentUser.email%>" required>
+
+		<input class="input" type="tel" name="phone" value="<%=currentUser.phoneNumber%>" required>
+
+		<button class="button" type="submit">Update</button>
+	</form>
+</div>

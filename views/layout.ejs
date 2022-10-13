@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1">
+		<meta name="author" content="Onwuajuese, Somtochukwu">
+		<title>Start Saving</title>
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/main.js"></script>
+		<!-- <script src="/socket.io/socket.io.js"></script> -->
+
+		<link rel="icon" href="/img/icon.png">
+		<link rel="stylesheet" href="/css/main.css">
+	</head>
+
+	<body>
+		<div class="body">
+			<div class="head">
+				<a href="/">
+					<h1>
+						LION SAVINGS
+					</h1>
+				</a>
+				<% if(message) { %>
+					<code style="color:red">
+						<%=message%>
+					</code>
+				<% } %>
+				<div class="flashes">
+					<% if (flashMessages) { %>
+					<% if (flashMessages.success) { %>
+					<div class="flash success">
+						<%= flashMessages.success %>
+					</div>
+					<% } else if (flashMessages.error) { %>
+					<div class="flash error">
+						<%= flashMessages.error %>
+					</div>
+					<% } %>
+					<% } %>
+				</div>
+				<%- include('partials/breadcrumbs') %>
+		
+				<% if(loggedIn){ %>
+					
+				<% } else {%>
+					<span class="logins">
+						<a href="/users/signin" class="button">Sign in</a>
+						<a href="/users/signup" class="button">Sign up</a>
+					</span>
+				<% } %>
+			</div>
+	
+			<div class="container">
+				<%- body %>
+			</div>
+	<!-- 
+			<div class="footer div">
+				<%- include('partials/footer')  %>
+			</div> -->
+		</div>
+		<% if(loggedIn){ %>
+			<img src="/img/menu.png" class="menub">
+		<% }%>
+		<%- include('partials/menu') %>
+	</body>
+</html>

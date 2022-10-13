@@ -1,0 +1,40 @@
+
+<div class="profile_index">
+	<div class="profile">
+
+		<div class="details">
+			<h1>
+				<%=currentUser.fullname.toUpperCase()%>
+			</h1>
+
+			<div>
+				<%=currentUser.email%>
+			</div>
+
+			<div>
+				<%=currentUser.phoneNumber%>
+			</div>
+		</div>
+
+		<div class="balance">
+		You have <br>
+			<b>#<%=currentUser.balance%></b>
+		<br>to your name
+		</div>
+
+	</div>
+
+	<div class="other">
+		<a href="/users/startSaving">
+			Start saving
+		</a>
+		
+		<a href="/users/subscriptions">
+			Buy airtime or data
+		</a>
+		
+		<a href="/users/subscriptions/active">
+			See active subscriptions
+		</a>
+	</div>
+</div>

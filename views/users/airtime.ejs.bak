@@ -1,0 +1,29 @@
+<html>
+
+<style>
+	body{
+	}
+</style>
+
+<div class="signyp_div">
+	<form class='form signup' action="/users/subscriptions" method="POST">
+		Buy airtime or data
+		<br>
+		<select name="subscription" class="input">
+			<option value="airtime">Airtime</option>
+			<option value="data">Data</option>
+		</select>
+
+		<select name="network" class="input">
+			<option value="MTN DATA BUNDLE">MTN</option>
+			<option value="AIRTEL DATA BUNDLE">Airtel</option>
+		</select>
+
+		<input class="input" type="number" name="phoneNumber" value="<%=currentUser.phoneNumber%>">
+
+		<input type="number" name="amount" class="input" min="50" value="100" required>
+
+		<button class="button" type="submit">Continue</button>
+	</form>
+</div>
+</html>

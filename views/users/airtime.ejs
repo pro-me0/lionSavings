@@ -1,0 +1,29 @@
+<html>
+
+<style>
+	body{
+		backdrop-filter: blur(8px);
+	}
+</style>
+
+<div class="signup_div">
+	<form class='form signup' action="/users/airtime" method="POST">
+		Buy airtime or data
+		<br>
+		<div class="input line">		
+			<input class="input number" type="number" name="phoneNumber" value="<%=currentUser.phoneNumber%>">
+			<img class="in_image" src="/img/icon.png">
+
+		</div>
+
+		<select name="subscription" class="input">
+			<option value="airtime">Airtime</option>
+			<option value="data">Data</option>
+		</select>
+
+		<input type="number" name="amount" class="input" min="50" value="100" required>
+
+		<button class="button" type="submit">Continue</button>
+	</form>
+</div>
+</html>

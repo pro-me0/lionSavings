@@ -1,0 +1,28 @@
+
+	<div class="menu">
+		<div class="settings">
+			<% if(loggedIn) {%>
+				<a href="/users/<%=currentUser.id%>">
+					Profile
+				</a>
+			<%}%>
+		</div>
+
+		<div class="settings">
+			<a href="/users/startSaving">
+				Start saving
+			</a>
+		</div>
+
+		<div class="settings">
+			<a href="/users/settings">
+				settings
+			</a>
+		</div>
+		
+		<div class="settings">
+			<a href="/users/logout" class="out">Sign out</a>
+		</div>
+	</div>
+
+

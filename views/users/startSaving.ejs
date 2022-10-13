@@ -1,0 +1,28 @@
+<div class="signyp_div">
+	<form class='form signup' action="/users/startSaving" method="POST">
+	Please fill the form to start saving
+		<br>
+		<label>
+			Amount
+		</label>
+		<input class="input" type="number" name="amount" placeholder="Amount" value=500 min="500" required>
+		<br>
+		<label>
+			Interval
+		</label>
+		<select name="interval" class="input">
+			<option value="daily">daily</option>
+			<option value="weekly">weekly</option>
+			<option value="monthly">monthly</option>
+		</select>
+
+		<br>
+		<label>
+			Duration
+		</label>
+		<input class="input" type="number" name="duration" value=4 placeholder="Duration" min="4" required>
+		<br>
+
+		<button class="button input" type="submit">Start saving</button>
+	</form>
+</div>
