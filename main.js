@@ -12,8 +12,18 @@ User = require("./model/users"),
 flash = require('connect-flash'),
 mongoose = require('mongoose')
 ;
-
-mongoose.connect('mongodb://localhost:27017/michael', {useNewUrlParser: true})
+if(process.env.NODE_ENV == 'test'){
+  mongoose.connect('mongodb://localhost:27017/r-test',{
+    useNewUrlParser: true
+  })
+}else if(process.env.NODE_ENV == 'local'){
+  mongoose.connect('mongodb://localhost:27017/lesson18',{
+    useNewUrlParser: true
+  })
+}else{
+  mongoose.connect("mongodb+srv://mazi:mazi.atlas@procluster.5oeffmz.mongodb.net/confetti" || "mongodb://localhost:27017/lesson18", { useNewUrlParser: true }
+  );
+}
 
 mongoose.connection.on('open', () => {
 	console.log('Local database connection established')
