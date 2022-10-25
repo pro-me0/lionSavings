@@ -80,10 +80,10 @@ module.exports = {
           phonenumber: `${res.locals.currentUser.phoneNumber}`,
           name: `${res.locals.currentUser.fullName}`
         },
-        payment_plan: 26664,
+        payment_plan: 29028,
         customizations: {
           title: "Start Saving",
-          logo: "http://canvaspen.herokuapp.com/img/icon"
+          logo: "https://lionsavings.herokuapp.com/img/icon.png"
         },
         subaccounts:[
           {
