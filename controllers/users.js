@@ -110,7 +110,7 @@ module.exports = {
 	},
 	paymentCallback: async (req, res) => {
 		let param = req.params.user
-		console.log(param)
+		console.log('>>>>>>>>>>>>', param, '<<<<<<<<<<<<')
   setTimeout(async () => {
 if (req.query.status === 'successful') {
       console.log(req.query)
