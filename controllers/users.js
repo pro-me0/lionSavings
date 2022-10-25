@@ -74,7 +74,7 @@ module.exports = {
         tx_ref: Date.now(),
         amount: `${req.body.amount}`,
         currency: "NGN",
-        redirect_url: "http://localhost:24350/users/payment-callback",
+        redirect_url: "https://lionsavings.herokuapp.com/users/payment-callback",
         customer: {
           email: `${res.locals.currentUser.email}`,
           phonenumber: `${res.locals.currentUser.phoneNumber}`,
