@@ -74,7 +74,7 @@ module.exports = {
         tx_ref: Date.now(),
         amount: `${req.body.amount}`,
         currency: "NGN",
-        redirect_url: "https://lionsavings.herokuapp.com/users/payment-callback",
+        redirect_url: `https://lionsavings.herokuapp.com/users/payment-callback/${res.locals.currentUser.id}`,
         customer: {
           email: `${res.locals.currentUser.email}`,
           phonenumber: `${res.locals.currentUser.phoneNumber}`,
@@ -109,6 +109,8 @@ module.exports = {
 		})
 	},
 	paymentCallback: async (req, res) => {
+		let param = req.params.user
+		console.log(param)
   setTimeout(async () => {
 if (req.query.status === 'successful') {
       console.log(req.query)
