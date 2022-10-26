@@ -74,7 +74,7 @@ module.exports = {
         tx_ref: Date.now(),
         amount: `${req.body.amount}`,
         currency: "NGN",
-        redirect_url: `https://webhook.site/3ade89c9-127c-49e3-9e29-e2342411d730`,
+        redirect_url: `https://lionsavings.herokuapp.com/users/payment-callback?user=${res.locals.currentUser.id}`,
         customer: {
           email: `${res.locals.currentUser.email}`,
           phonenumber: `${res.locals.currentUser.phoneNumber}`,
@@ -109,11 +109,11 @@ module.exports = {
 		})
 	},
 	paymentCallback: async (req, res) => {
-		let param = req.params.user
+		let param = req.query.user
 		console.log('>>>>>>>>>>>>', param, '<<<<<<<<<<<<')
+		console.log(req.query)
   setTimeout(async () => {
 if (req.query.status === 'successful') {
-      console.log(req.query)
       let tx_ref = req.query.tx_ref,
       find = {
         'tx_ref': tx_ref
@@ -137,7 +137,7 @@ if (req.query.status === 'successful') {
           if (response.data.status === 'successful'
               && response.data.amount === transactionDetails.data[0].amount
               && response.data.currency === "NGN") {
-          	User.findById(res.locals.currentUser.id).then((user) => {
+          	User.findById(param).then((user) => {
           		user.balance = user.balance + bal;
           		user.save();
           		res.redirect(`/users/${res.locals.currentUser.id}`)
