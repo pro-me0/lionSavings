@@ -24,7 +24,8 @@ router.get('/subscriptions', users.airtime);
 router.get('/subscriptions/active', users.active, users.subscription, users.final);
 router.get('/delete', users.delete);
 
-router.get('/payment-callback/:user', users.paymentCallback);
+router.post('/payment-callback', users.paymentCallback, (req, res) => {console.log('<post>')});
+router.get('/payment-callback', users.paymentCallback);
 
 router.post('/settings/changePassword', users.updatePassword);
 router.post('/settings/edit', users.update, users.redirect);
