@@ -13,7 +13,8 @@ flash = require('connect-flash'),
 mongoose = require('mongoose')
 ;
 if(process.env.NODE_ENV == 'test'){
-  mongoose.connect('mongodb://localhost:27017/r-test',{
+  console.log('TEST MOOD ')
+  mongoose.connect(process.env.mongoDB_test,{
     useNewUrlParser: true
   })
 }else if(process.env.NODE_ENV == 'local'){
@@ -21,15 +22,17 @@ if(process.env.NODE_ENV == 'test'){
     useNewUrlParser: true
   })
 }else{
+  process.env.NODE_ENV = "Atlas";
   mongoose.connect(process.env.mongoDB_Atlas, { useNewUrlParser: true }
   );
 }
 
 mongoose.connection.on('open', () => {
-	console.log('Local database connection established')
+	console.log(`${process.env.NODE_ENV} database connection established`)
 })
 
 app.set('port', process.env.PORT || 24350);
+process.env.HOST = `http://localhost:${app.get('port')}`;
 app.set('view engine', 'ejs');
 
 
@@ -74,3 +77,5 @@ app.listen(app.get('port'), () => {
 	console.log(`Server Started
 		listening @ http://localhost${app.get('port')}`)
 })
+
+module.exports = app

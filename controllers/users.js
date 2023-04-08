@@ -7,6 +7,17 @@ flutterwave = require('flutterwave-node-v3'),
 flw = new flutterwave(process.env.FLW_PUBLIC_KEY, process.env.FLW_SECRET_KEY),
 axios = require('axios'),
 dotenv = require('dotenv').config(),
+getBody1 = (body) => {
+	return {
+		name:{
+			first: body.firstName,
+			last: body.lastName
+		},
+		email: body.email,
+		phoneNumber: body.phone
+	}
+},
+
 getBody = (body) => {
 	return {
 		name:{
@@ -17,8 +28,11 @@ getBody = (body) => {
 		phoneNumber: body.phone,
 		balance: 0
 	}
-}
-;
+};
+
+
+
+
 module.exports = {
 	signin: (req, res) => {
 		res.render('signin')
@@ -74,7 +88,7 @@ module.exports = {
         tx_ref: Date.now(),
         amount: `${req.body.amount}`,
         currency: "NGN",
-        redirect_url: `https://lionsavings.herokuapp.com/users/payment-callback?user=${res.locals.currentUser.id}`,
+        redirect_url: `${process.env.HOST}/users/payment-callback?user=${res.locals.currentUser.id}`,
         customer: {
           email: `${res.locals.currentUser.email}`,
           phonenumber: `${res.locals.currentUser.phoneNumber}`,
@@ -83,7 +97,7 @@ module.exports = {
         payment_plan: 29028,
         customizations: {
           title: "Start Saving",
-          logo: "https://lionsavings.herokuapp.com/img/icon.png"
+          logo: "http://localhost:24350/img/icon.png"
         },
         subaccounts:[
           {
@@ -111,7 +125,7 @@ module.exports = {
 	paymentCallback: async (req, res) => {
 		let param = req.query.user
 		console.log('>>>>>>>>>>>>', param, '<<<<<<<<<<<<')
-		console.log(req.query)
+		console.table(req.query)
   setTimeout(async () => {
 if (req.query.status === 'successful') {
       let tx_ref = req.query.tx_ref,
@@ -132,7 +146,11 @@ if (req.query.status === 'successful') {
           transactionDetails = JSON.parse(resp.body);
           // console.log('transactionDetails', transactionDetails)
           const response = await flw.Transaction.verify(verify);
+          
+          console.log('transactionDetails', transactionDetails);
           console.log('transactionDetails amount', transactionDetails.data[0].amount);
+         
+
           let bal = transactionDetails.data[0].amount;
           if (response.data.status === 'successful'
               && response.data.amount === transactionDetails.data[0].amount
@@ -147,7 +165,7 @@ if (req.query.status === 'successful') {
           }
         })
       }
-    }, 4000)
+    }, 5000)
     
 },
 	settings: (req, res) => {
@@ -157,7 +175,7 @@ if (req.query.status === 'successful') {
 		res.render('users/edit')
 	},
 	update: (req, res, next) => {
-		body = getBody(req.body);
+		body = getBody1(req.body);
 		User.findByIdAndUpdate(res.locals.currentUser.id, {
 			$set: body
 		}).then(user => {
@@ -228,5 +246,11 @@ if (req.query.status === 'successful') {
 	},
 	buyAirtime: (req, res) => {
 		res.json(req.body)
+	},
+	all: (req, res)=> {
+		User.find({}).then(user => {
+		  res.locals.all = user;
+		  res.render('users/all');
+		})
 	}
 }

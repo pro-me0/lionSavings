@@ -12,7 +12,7 @@ router.use((req, res, next) => {
 	}
 	next()
 });
-
+router.get('/all', users.all);
 router.get('/signin', users.signin);
 router.get('/signup', users.signup);
 router.get('/logout', users.logout, users.redirect);
@@ -35,5 +35,6 @@ router.post('/signup', users.create, users.redirect);
 router.post('/startSaving/', users.startSaving);
 
 router.get('/:id', users.show);
+
 
 module.exports = router
